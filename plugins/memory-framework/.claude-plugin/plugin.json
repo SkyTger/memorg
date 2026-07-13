@@ -1,0 +1,5 @@
+{
+  "name": "memory-framework",
+  "description": "Ведение длинных обсуждений: /discussion-new создаёт структуру (WIP-карта + design-финал) и сам настраивает CLAUDE.md-якорь, /discussion-close закрывает со сверкой и архивацией. Контекст переживает автокомпакты и новые сессии.",
+  "author": { "name": "SkyTger" }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "skytger",
+  "owner": { "name": "SkyTger" },
+  "plugins": [
+    {
+      "name": "memory-framework",
+      "source": "./plugins/memory-framework",
+      "description": "Длинные обсуждения с Claude без потерь на автокомпактах: живая карта решений (WIP) + накапливаемый финал (design). Команды /discussion-new и /discussion-close."
+    }
+  ]
+}
