@@ -74,7 +74,8 @@ Restart the session after installing.
    in the terminal — `cd` into it and run `claude`; in the app — the
    **Code** tab → pick the folder.
 2. Starting a big topic — `/discussion-new`. The agent asks for a name
-   and sets up the structure.
+   and sets up the structure (creating the `discussions/` folder itself
+   if it doesn't exist yet).
 3. Then just talk. The agent maintains the map.
 4. When the topic is done — `/discussion-close`: completeness check,
    final document, archive.
