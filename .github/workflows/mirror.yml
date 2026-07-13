@@ -1,0 +1,26 @@
+name: Mirror to org repo
+
+# Зеркалирует main в приватную репу для оргкаталога плагинов claude.ai.
+# Требует секрет MIRROR_TOKEN: fine-grained PAT с правом Contents:
+# Read and write на репу-зеркало (Settings → Secrets → Actions).
+# MIRROR_REPO ниже заменить на реальный путь приватной репы.
+
+on:
+  push:
+    branches: [main]
+
+env:
+  MIRROR_REPO: LEADGID-ORG/memorg # TODO: заменить на приватную репу-зеркало
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to mirror
+        run: |
+          git push --force \
+            "https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/${MIRROR_REPO}.git" \
+            HEAD:main
