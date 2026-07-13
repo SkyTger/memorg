@@ -1,10 +1,10 @@
 {
-  "name": "skytger",
+  "name": "memorg",
   "owner": { "name": "SkyTger" },
   "plugins": [
     {
-      "name": "memory-framework",
-      "source": "./plugins/memory-framework",
+      "name": "discussions",
+      "source": "./plugins/discussions",
       "description": "Длинные обсуждения с Claude без потерь на автокомпактах: живая карта решений (WIP) + накапливаемый финал (design). Команды /discussion-new и /discussion-close."
     }
   ]
