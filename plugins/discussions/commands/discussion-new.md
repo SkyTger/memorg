@@ -36,13 +36,23 @@ if [ "$PROJ_ROOT" != "$HOME" ]; then
     [ -d "$CAND" ] && DISC_DIR="$CAND" && MODE=project && break
   done
 fi
-if [ "$MODE" = notebook ]; then
+if [ "$MODE" = notebook ] && [ -d ~/.claude/projects ]; then
   # Блокнот якорится на проект СЕССИИ, а не на pwd (pwd мог уехать за сессию).
-  PROJECT_DIR=$(dirname "$(find ~/.claude/projects -maxdepth 2 -name "$CLAUDE_CODE_SESSION_ID.jsonl" 2>/dev/null | head -1)")
+  PROJECT_DIR=$(dirname "$(find ~/.claude/projects -maxdepth 2 -name "${CLAUDE_CODE_SESSION_ID:-none}.jsonl" 2>/dev/null | head -1)")
   [ -d "$PROJECT_DIR" ] || PROJECT_DIR=~/.claude/projects/$(pwd | sed 's|/|-|g')
   DISC_DIR="$PROJECT_DIR/memory/discussions"
+elif [ "$MODE" = notebook ]; then
+  # Локального ~/.claude/projects нет (изолированная среда, например
+  # песочница Cowork) — блокнота не существует, ведём в рабочей папке.
+  MODE=project
+  DISC_DIR="$PROJ_ROOT/discussions"
 fi
 ```
+
+В изолированной среде (Cowork-песочница) дополнительно предупреди
+пользователя: между сессиями сохраняется только подключённая папка. Если
+рабочая папка не подключена — файлы обсуждения не переживут сессию,
+предложи сначала подключить папку.
 
 Если пользователь явно просит завести **проектные** обсуждения там, где
 папки ещё нет (первое обсуждение в месте) — создай `"$PROJ_ROOT/discussions"`
@@ -57,34 +67,10 @@ test -d "$DISC_DIR/<topic-slug>" && echo "Уже существует" && exit
 test -d "$DISC_DIR/_archive/<topic-slug>-*" && echo "Есть в архиве" && exit
 ```
 
-### 2.5. Проверь наличие handoff
-
-```bash
-HANDOFF=~/claude-dotfiles/handoffs/<topic-slug>.md
-```
-
-Если файл существует — это обсуждение, начатое на другой машине.
-
-1. Прочитай handoff целиком.
-2. Используй его содержимое для заполнения WIP.md на шаге 4:
-   - `## Контекст` ← из handoff `## Контекст`
-   - `## Что РЕШЕНО` ← из handoff `## Ключевые решения`
-   - `## Что ОТКРЫТО` ← из handoff `## Открытые вопросы`
-   - `## Применённые изменения` ← из handoff `## Применённые изменения`
-3. Добавь в WIP блок:
-   ```
-   > Восстановлено из handoff (<дата экспорта из frontmatter>).
-   > Ход рассуждений предыдущей сессии — см. ~/claude-dotfiles/handoffs/<topic-slug>.md
-   ```
-4. Скажи пользователю: «Найден handoff от <дата>, обсуждение восстановлено.»
-5. Описание темы для INDEX.md возьми из handoff `description`.
-
-Если handoff **не найден** — продолжай обычный flow (описание берётся из аргумента).
-
 ### 3. Получи UUID текущей сессии
 
 ```bash
-SESSION_ID=$CLAUDE_CODE_SESSION_ID
+SESSION_ID=${CLAUDE_CODE_SESSION_ID:-unknown}
 ```
 
 ### 4. Создай папку и WIP.md

@@ -41,7 +41,11 @@ agent re-enters the topic through the map and picks up where it left off.
 
 ## Installation
 
-In Claude Code (terminal, desktop app, or IDE extension):
+**Claude Desktop (app):** File → Settings → Plugins → **+** button →
+enter the repository `SkyTger/memorg` → install **discussions**. Restart
+the app. The plugin's commands appear in every tab, including Code.
+
+**Claude Code (terminal or IDE extension):**
 
 ```
 /plugin marketplace add SkyTger/memorg
@@ -66,8 +70,9 @@ Restart the session after installing.
 
 ## Usage
 
-1. Open your project folder in Claude Code (always the same one for a
-   given topic).
+1. Open your project folder (always the same one for a given topic):
+   in the terminal — `cd` into it and run `claude`; in the app — the
+   **Code** tab → pick the folder.
 2. Starting a big topic — `/discussion-new`. The agent asks for a name
    and sets up the structure.
 3. Then just talk. The agent maintains the map.
@@ -94,12 +99,24 @@ Note: the skills' instruction text is currently in Russian — the agent
 follows them regardless of your conversation language; an English
 translation is planned.
 
+## Where it works
+
+| Environment | Status |
+|---|---|
+| Claude Code CLI (terminal) | fully |
+| Claude Desktop, Code tab | fully — it's the same local Claude Code |
+| IDE extensions (VS Code, JetBrains) | fully |
+| Cowork (desktop) | with a connected working folder; discussions live there |
+
+In Cowork only the connected folder persists between sessions — connect
+the folder your topic should live in before running `/discussion-new`.
+
 ## Limitations
 
-- Works in Claude Code (CLI, desktop, IDE extensions). Other agentic
-  tools (Codex, Gemini CLI, etc.) don't read Claude Code plugins —
-  porting the concept to them is planned as separate adaptations. The
-  discussion files themselves are portable today: they're just markdown.
+- Other agentic tools (Codex, Gemini CLI, etc.) don't read Claude Code
+  plugins — porting the concept to them is planned as separate
+  adaptations. The discussion files themselves are portable today:
+  they're just markdown.
 - The cloud web version of Claude Code doesn't support plugins.
 
 ## License
