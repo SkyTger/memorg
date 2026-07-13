@@ -73,9 +73,11 @@ Restart the session after installing.
 1. Open your project folder (always the same one for a given topic):
    in the terminal — `cd` into it and run `claude`; in the app — the
    **Code** tab → pick the folder.
-2. Starting a big topic — `/discussion-new`. The agent asks for a name
-   and sets up the structure (creating the `discussions/` folder itself
-   if it doesn't exist yet).
+2. Starting a big topic — `/discussion-new` (optionally with the topic:
+   `/discussion-new anonymization rules`). The agent sets everything up
+   itself — including the `discussions/` folder if it doesn't exist yet —
+   and if the topic has already come up in the chat, it fills the map
+   from the conversation right away.
 3. Then just talk. The agent maintains the map.
 4. When the topic is done — `/discussion-close`: completeness check,
    final document, archive.
