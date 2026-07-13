@@ -7,14 +7,8 @@ survives context compaction, fresh sessions, and machine switches —
 because it lives in plain markdown files next to your project, not in
 the conversation context.
 
-The system is modular: this repo is a plugin marketplace, and each layer
-is a separate plugin you install independently.
-
-| Plugin | What it does | Status |
-|---|---|---|
-| **discussions** | Long-form discussions: a living decision map + an accumulating final document | ✅ available |
-| memory | A standard for agent memory files (frontmatter + indexes) | planned |
-| knowledge-bank | Structured project knowledge base | planned |
+The repo is organized as a plugin marketplace. It currently ships one
+plugin — **discussions** — with more to come.
 
 ## The problem
 
