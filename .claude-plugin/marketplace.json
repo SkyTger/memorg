@@ -1,11 +1,13 @@
 {
   "name": "memorg",
-  "owner": { "name": "SkyTger" },
+  "owner": {
+    "name": "SkyTger"
+  },
   "plugins": [
     {
       "name": "discussions",
       "source": "./plugins/discussions",
-      "description": "Длинные обсуждения с Claude без потерь на автокомпактах: живая карта решений (WIP) + накапливаемый финал (design). Команды /discussion-new и /discussion-close."
+      "description": "Длинные обсуждения с Claude без потерь на автокомпактах: живая карта решений (WIP) + накапливаемый финал (design). Команды /discussion-new, /discussion-close, /discussion-handoff."
     }
   ]
 }

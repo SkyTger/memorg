@@ -81,6 +81,12 @@ Restart the session after installing.
 3. Then just talk. The agent maintains the map.
 4. When the topic is done — `/discussion-close`: completeness check,
    final document, archive.
+5. Need to continue the topic on another machine or hand it to a
+   colleague, with no shared git? `/discussion-handoff`: the agent builds
+   a self-contained digest into a single file inside the topic folder.
+   On the receiving side, drop the file into the working folder and
+   `/discussion-new` unfolds the discussion from it. If the project
+   folder is synced via git, you don't need this — git does the transfer.
 
 Discussion files live in `discussions/` inside your project:
 
