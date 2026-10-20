@@ -28,9 +28,11 @@ Every big topic gets its own folder with two files:
 
 Plus the automation that makes this a plugin rather than a habit:
 
-- `/discussion-new` creates the structure **and writes an anchor into
-  the project's CLAUDE.md** — the discussion map is guaranteed to be in
-  context in every new session, no reliance on the agent remembering.
+- `/discussion-new` creates the structure **and hooks the topic list
+  into the project's CLAUDE.md** — in every new session the agent knows
+  which discussions are running, no reliance on its memory. It reads a
+  topic's map when the topic comes up instead of preloading every map,
+  so context doesn't bloat however many topics pile up.
 - Verification rules: the agent doesn't declare a question closed
   without re-checking the map; `/discussion-close` closes a topic only
   after a full review (are all decisions written down, is everything
@@ -92,7 +94,7 @@ Discussion files live in `discussions/` inside your project:
 
 ```
 my-project/
-├── CLAUDE.md                  ← anchor to active discussions (maintained automatically)
+├── CLAUDE.md                  ← anchor to the topic list (set up automatically)
 └── discussions/
     ├── INDEX.md               ← list of topics
     └── my-topic/
